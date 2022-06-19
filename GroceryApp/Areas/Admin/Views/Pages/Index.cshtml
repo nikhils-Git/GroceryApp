@@ -1,0 +1,72 @@
+﻿ @model IEnumerable<Page>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table sorting" id="pages">
+    <thead>
+        <tr class="home">
+            @* modified *@
+            <th>
+               Title
+            </th>
+            <th>
+               Slug
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr id="id_@item.ID" class="@item.Slug">
+          @* modified *@
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @item.Slug
+            </td>
+            
+            <td>
+
+                @* modified *@
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+
+                @* don't delete is page is home page' *@
+                @if (item.Slug != "home")
+                {
+                <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.ID">Delete</a> 
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@* jquery code for sorting *@
+@section Scripts {
+   
+    <script>
+       $("table#pages tbody").sortable({
+           @* all pages exceot home page *@
+           items : "tr:not(.home)",
+           placeholder : "ui-state-highlight",
+           update : function()
+           {
+               @* get all ids *@
+               let ids =   $("table#pages tbody").sortable("serialize");
+               let url = "/admin/pages/reorder";
+
+               @* ajax *@
+               $.post(url, ids, function() { });
+           }
+       })
+    </script>
+}

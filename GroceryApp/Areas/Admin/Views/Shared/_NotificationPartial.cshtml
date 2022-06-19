@@ -1,0 +1,18 @@
+﻿
+@*
+    checking tempdata is active or  not. After writing code go to layout page in shared folder
+*@
+
+@if(TempData["Success"] != null)
+{
+    <div class = "alert alert-success notification">
+        @TempData["Success"]
+    </div>
+}
+
+@if(TempData["Error"] != null)
+{
+    <div class = "alert alert-danger notification">
+        @TempData["Error"]
+    </div>
+}
