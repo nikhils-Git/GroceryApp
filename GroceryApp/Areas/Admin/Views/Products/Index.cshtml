@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Products";
 }
 
 <h1>Products</h1>
@@ -12,11 +12,12 @@
 <table class="table">
     <thead>
         <tr>
+            
             <th>
                 Name
             </th>
             <th>
-               Price
+                Price
             </th>
             <th>
                 Category
@@ -30,6 +31,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            
             <td>
                 @item.Name
             </td>
@@ -38,15 +40,15 @@
                 @item.Price
             </td>
             <td>
-                @item.Category.Name 
+                @item.Category.Name
             </td>
             <td>
                 Image
             </td>
             <td>
-                 @* modified *@
+                @* modified *@
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |                
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                 <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.ID">Delete</a> 
                 
             </td>

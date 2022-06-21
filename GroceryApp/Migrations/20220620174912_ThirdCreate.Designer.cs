@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroceryApp.Migrations
 {
     [DbContext(typeof(GroceryAppContext))]
-    [Migration("20220613070706_ThirdCreate")]
+    [Migration("20220620174912_ThirdCreate")]
     partial class ThirdCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
